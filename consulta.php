@@ -37,7 +37,7 @@ include_once('funcoes.php');
 
             <p>Exemplo:</p>
             <ul>
-                <li>importadadosapi.php/2019-12-01 </li>
+                <li>importadadosapi.php?data=2019-12-01  </li>
                 <li>importadadosapi.php (considera data atual) </li>
             </ul>
 
