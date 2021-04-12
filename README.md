@@ -6,6 +6,7 @@ Exibe as informações:
 <li>As 30 viagens mais longas, em KM’s, no formato de grid/tabela, contendo a duração e a aeronave de cada uma;</li>
 <li>Qual o estado com o maior número de aeroportos;</li>
 <li>Uma tabela com todos os aeroportos de origem e qual o destino mais distante e o mais próximo a ele (com voos disponíveis).</li>
+</ul>
 
 <h3>funcoes.php</h3>
 

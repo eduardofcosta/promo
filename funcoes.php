@@ -88,12 +88,15 @@ function GeraCombinacaoVoo($aeroportos, $data){
             $latitude_destino  = $voo->summary->to->lat;
             $longitude_destino = $voo->summary->to->lon;
 
+            
+            // calcula a distancia
             $distancia = distanciaPercorida($latitude_origem,$longitude_origem,$latitude_destino,$longitude_destino);
             //print_r ("distancia = " . $distancia . "<br/>");
 
             $dataVoo = $voo->summary->departure_date;
             //print_r ("dataVoo = " . $dataVoo . "<br/>");
         
+            // salva os dados no banco de dados voo
             $idVoo = salvarVoo($key1 , $key2, $distancia, $dataVoo, $menorValor, $modelo, $aeronave, $url );
             //print_r ("<br/> IdVoo = " . $idVoo . "<br/><br/>");
          
@@ -101,16 +104,15 @@ function GeraCombinacaoVoo($aeroportos, $data){
                 
                 $aeronave = $voo->aircraft->manufacturer;
                 $modelo = $voo->aircraft->model;
-
                 $saida = $voo->departure_time;
                 $chegada = $voo->arrival_time;      
                 $valor  = $voo->fare_price;
-
                 $custoTarifa = custoTarifa($distancia, $voo->fare_price);
                 $tempoVoo = tempoVoo($voo->departure_time,  $voo->arrival_time);
                 $minutos = horaParaMinutos(tempoVoo($voo->departure_time,  $voo->arrival_time));
                 $velocidade = velocidadeVoo($minutos, $distancia);
                 
+                // salva os dados no banco de dados voo detalhe
                 $idVooDetalhe = salvarVooDetalhe($idVoo, $aeronave, $modelo, $saida, $chegada, $valor, $velocidade, $tempoVoo, $custoTarifa);
                 //print_r ("idVooDetalhe = " . $idVooDetalhe . "<br/>");
             } 
@@ -126,8 +128,7 @@ function GeraCombinacaoVoo($aeroportos, $data){
 //salva informação das varias opções de voos para aquela região e data
 function salvarVooDetalhe($idVoo, $aeronave, $modelo, $saida, $chegada, $valor, $velocidade, $tempoVoo, $custoTarifa ){
 
-    global $link;
- 
+    global $link; 
 
         $sql = "INSERT INTO tb_voo_detalhe (voo_id, aeronave, modelo, saida, chegada, valor, velocidade, tempoVoo, custoTarifa) VALUE ('".$idVoo."' , '".$aeronave."', '".$modelo."', '".$saida."', '".$chegada."', '".$valor."', '".$velocidade."', '".$tempoVoo."', '".$custoTarifa."')";
         //echo "<br><br>" . $sql;
