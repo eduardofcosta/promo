@@ -44,7 +44,7 @@ function GeraCombinacaoVoo($aeroportos, $data){
     foreach ($aeroportos as $key1 => $aeroporto1) {
 
         // Para a execução do FOREACH aeroporto1
-        if ($count1 > 30) {
+        if ($count1 > 20) {
             break;
         }
 
