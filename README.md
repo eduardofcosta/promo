@@ -1,1 +1,1 @@
-# promo - Mock flight search API
+Mock flight search API
