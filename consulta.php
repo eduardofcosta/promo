@@ -54,7 +54,7 @@ include_once('funcoes.php');
 
                 <?php
 
-                $sql = "SELECT DISTINCT v.origem, v.destino, v.distancia, d.aeronave, d.tempoVoo FROM tb_voo v, tb_voo_detalhe d WHERE v.voo_id = d.voo_id and data_voo = '".$_POST['data']."'  ORDER BY 3 DESC LIMIT 30";
+                $sql = "SELECT DISTINCT v.origem, v.destino, v.distancia, d.aeronave, d.tempoVoo FROM tb_voo v, tb_voo_detalhe d WHERE v.voo_id = d.voo_id  ORDER BY 3 DESC LIMIT 30";
                 // print_r($sql);
 
                 $result = mysqli_query($link,$sql) or die("<b>Error:</b> ocorreu erro ao acessa o bd<br/>" . mysqli_error($link));
@@ -119,10 +119,9 @@ include_once('funcoes.php');
                 <?php
 
                     $sql = "SELECT origem,   
-                    (SELECT  MIN(distancia) FROM tb_voo b WHERE b.origem = a.origem and data_voo = '".$_POST['data']."') AS menor, 
-                    (SELECT  MAX(distancia) FROM tb_voo c WHERE c.origem = a.origem and data_voo = '".$_POST['data']."') AS maior 
-                    FROM tb_voo a
-                    where  data_voo = '".$_POST['data']."'
+                    (SELECT  MIN(distancia) FROM tb_voo b WHERE b.origem = a.origem ) AS menor, 
+                    (SELECT  MAX(distancia) FROM tb_voo c WHERE c.origem = a.origem ) AS maior 
+                    FROM tb_voo a                    
                     GROUP BY origem;";
                     // print_r($sql);
 
