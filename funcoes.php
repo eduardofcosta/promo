@@ -203,6 +203,8 @@ function adicionarAeroporto($descricao , $lat, $lon, $estado, $cidade ){
 }
 
 
+
+
 // funcao para montar combo generica
 function MontaCombo($pNome = "", $campos="", $tabela="", $pSelected = "", $extra = ""){
 
@@ -334,6 +336,19 @@ function formataData($data) {
 }
 
 
+// formatando campo hora
+function formataCampoHora($campo){
+
+    $string = explode(":",$campo);
+    
+    if(strlen($string[1])==1){
+
+        return $string[0] .':0'. $string[1];
+    
+    }else{
+        return $campo;
+    }
+}
 
 
 

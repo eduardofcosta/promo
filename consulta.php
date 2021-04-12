@@ -90,7 +90,7 @@ include_once('funcoes.php');
                             <td><?=BuscaDadosAeroporto('cidade','iata',$row["destino"]);?></td>						
                             <td><?=$row["distancia"] . " km";?></td>
                             <td><?=$row["aeronave"];?></td>
-                            <td><?=$row["tempoVoo"];?></td>	                  
+                            <td><?=formataCampoHora($row["tempoVoo"]);?></td>	                  
                         </tr>
                         <?php
                         }  
