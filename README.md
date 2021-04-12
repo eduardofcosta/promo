@@ -30,3 +30,4 @@ importadadosapi.php (sem informar a data, considera data atual)
 promo.sql
 
 Script para criação das tabelas (MySql).
+
